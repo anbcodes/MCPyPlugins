@@ -31,14 +31,12 @@ public class RunCommand extends JavaPlugin {
 			return CSender.getServer();
 		}
 
-		@Override
 		public void sendMessage(String arg0) {
 			System.out.println("send");
 			this.messages = new String[1];
 			this.messages[0] = arg0;
 		}
 
-		@Override
 		public void sendMessage(String[] arg0) {
 			System.out.println("send2");
 			this.messages = arg0;
@@ -98,12 +96,12 @@ public class RunCommand extends JavaPlugin {
 
 		@Override
 		public void recalculatePermissions() {
-			recalculatePermissions();			
+			CSender.recalculatePermissions();			
 		}
 
 		@Override
 		public void removeAttachment(PermissionAttachment arg0) {
-			removeAttachment(arg0);			
+			CSender.removeAttachment(arg0);			
 		}
 
 		@Override
@@ -119,33 +117,37 @@ public class RunCommand extends JavaPlugin {
 		public boolean isConversing() {
 			return CSender.isConversing();
 		}
+		@Override
 		public void abandonConversation(Conversation a0, ConversationAbandonedEvent a1) {
 			CSender.abandonConversation(a0 ,a1);
 		}
+		@Override
 		public void abandonConversation(Conversation a0) {
 			CSender.abandonConversation(a0);
 		}
+		@Override
 		public void acceptConversationInput(String a0) {
 			CSender.acceptConversationInput(a0);
 		}
+		@Override
 		public boolean beginConversation(Conversation a0) {
 			return CSender.beginConversation(a0);
 			
 		}
+		@Override
 		public void sendRawMessage(String a0) {
+			System.out.println("send3");
 			CSender.sendRawMessage(a0);
 		}
 		
 	}
 	public String[] run(String command) {
 		Sender sender = new Sender();
-		int re = 0;
 		try {
 			Bukkit.getScheduler().callSyncMethod(this, () -> Bukkit.dispatchCommand( sender , command ));
 			// System.out.println(sender.messages);
 			return sender.messages;
-		} catch (Exception e) {
-			re = 1;
+		} catch (Exception e) { 
 			throw(e);
 			
 		}

@@ -22,8 +22,8 @@ v = app.run("say connected")
 plugins = {}
 #loadingplugins
 for file in os.listdir("."):
-    if file != "main.py" and file != "MCPyPlugin":
-        plugins[file] = import_module(file).plugin(app)
+    if file[0] != "." and file != "MCPyPlugin" and os.path.isdir(file):
+        plugins[file] = import_module(file).PyPlugin(app)
 
 #tick Loop
 tickcount = 0
