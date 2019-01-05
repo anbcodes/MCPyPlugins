@@ -1,0 +1,5 @@
+name: MyPlugin
+main: me.anbcodes.pythoncommand.RunCommand
+version: 1.0
+API-version: 1.13
+commands:
